@@ -1,0 +1,137 @@
+import 'package:flutter/material.dart';
+import 'package:graphic/graphic.dart';
+import '../mock/chart_mock_data.dart';
+import 'package:intl/intl.dart';
+
+class WeightFatChart extends StatelessWidget {
+  const WeightFatChart({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // データを統合してグラフ用に変換
+    final chartData = _prepareChartData();
+    
+    return Column(
+      children: [
+        // 軸タイトル
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.0),
+          child: Row(
+            children: [
+              Text('体重 (kg)', style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+              Spacer(),
+              Text('体脂肪率 (%)', style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+            ],
+          ),
+        ),
+        Container(
+          height: 300,
+          padding: const EdgeInsets.all(16),
+          child: Chart(
+            data: chartData,
+            variables: {
+              'date': Variable(
+                accessor: (Map map) => map['date'] as String,
+                scale: OrdinalScale(tickCount: 5),
+              ),
+              'weight': Variable(
+                accessor: (Map map) => (map['weight'] as num?) ?? 0,
+              ),
+              'fat': Variable(
+                accessor: (Map map) => (map['fat'] as num?) ?? 0,
+              ),
+            },
+            marks: [
+              // 体重の棒グラフ（nullでない場合のみ表示）
+              IntervalMark(
+                position: Varset('date') * Varset('weight'),
+                color: ColorEncode(
+                  value: Colors.cyan,
+                  updaters: {
+                    'tap': {true: (_) => Colors.cyan.withOpacity(0.7)}
+                  },
+                ),
+                size: SizeEncode(value: 20),
+              ),
+              // 体脂肪率の折れ線グラフ（nullでない場合のみ表示）
+              LineMark(
+                position: Varset('date') * Varset('fat'),
+                color: ColorEncode(value: Colors.lightBlue),
+                size: SizeEncode(value: 2),
+              ),
+              // 体脂肪率のポイント（nullでない場合のみ表示）
+              PointMark(
+                position: Varset('date') * Varset('fat'),
+                color: ColorEncode(value: Colors.lightBlue),
+                size: SizeEncode(value: 6),
+              ),
+            ],
+            axes: [
+              Defaults.horizontalAxis
+                ..label = LabelStyle(
+                  textStyle: const TextStyle(fontSize: 10),
+                ),
+              Defaults.verticalAxis
+                ..label = LabelStyle(
+                  textStyle: const TextStyle(fontSize: 10),
+                ),
+            ],
+            selections: {
+              'tap': PointSelection(
+                on: {GestureType.tap},
+              )
+            },
+            tooltip: TooltipGuide(
+              followPointer: [false, true],
+              align: Alignment.topLeft,
+              offset: const Offset(-20, -20),
+            ),
+            crosshair: CrosshairGuide(followPointer: [false, true]),
+          ),
+        ),
+      ],
+    );
+  }
+
+  List<Map<String, dynamic>> _prepareChartData() {
+    final Map<String, Map<String, dynamic>> combined = {};
+    
+    // 体重データを追加（日付フォーマット済み）
+    for (final weightData in mockWeightData) {
+      final formattedDate = _formatDate(weightData.date);
+      combined[weightData.date] = {
+        'date': formattedDate,
+        'weight': weightData.value,
+        'fat': 0, // デフォルト値
+      };
+    }
+    
+    // 体脂肪データを追加（日付フォーマット済み）
+    for (final fatData in mockFatData) {
+      final formattedDate = _formatDate(fatData.date);
+      if (combined.containsKey(fatData.date)) {
+        combined[fatData.date]!['date'] = formattedDate;
+        combined[fatData.date]!['fat'] = fatData.value;
+      } else {
+        combined[fatData.date] = {
+          'date': formattedDate,
+          'weight': 0, // デフォルト値
+          'fat': fatData.value,
+        };
+      }
+    }
+    
+    return combined.values.toList()
+      ..sort((a, b) => a['date'].compareTo(b['date']));
+  }
+
+  String _formatDate(String dateString) {
+    try {
+      final parsed = DateTime.parse(dateString);
+      return DateFormat('MM/dd').format(parsed);
+    } catch (e) {
+      return dateString;
+    }
+  }
+}
+
