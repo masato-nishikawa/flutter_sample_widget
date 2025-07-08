@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import '../charts/syncfusion_flutter_charts.dart';
 
-class PageB extends StatelessWidget {
+class PageSfc extends StatelessWidget {
   final String title;
 
-  const PageB({super.key, required this.title});
+  const PageSfc({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {

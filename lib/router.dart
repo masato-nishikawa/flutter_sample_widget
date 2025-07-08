@@ -2,10 +2,11 @@ import 'package:go_router/go_router.dart';
 
 import 'pages/main_page.dart';
 import 'pages/page_a.dart';
-import 'pages/page_b.dart';
-import 'pages/page_c.dart';
-import 'pages/page_d.dart';
-import 'pages/page_e.dart';
+import 'pages/page_sfc.dart';
+import 'pages/page_sfc_line.dart';
+import 'pages/page_graphic.dart';
+import 'pages/page_graphic_line.dart';
+import 'pages/page_graphic_combine.dart';
 
 final GoRouter router = GoRouter(
   routes: [
@@ -18,31 +19,38 @@ final GoRouter router = GoRouter(
       },
     ),
     GoRoute(
-      path: '/b',
+      path: '/sfc',
       builder: (context, state) {
-        final title = state.extra as String? ?? 'Page B';
-        return PageB(title: title);
+        final title = state.extra as String? ?? 'sfc';
+        return PageSfc(title: title);
       },
     ),
     GoRoute(
-      path: '/c',
+      path: '/sfc/line',
       builder: (context, state) {
-        final title = state.extra as String? ?? 'Page C';
-        return PageC(title: title);
+        final title = state.extra as String? ?? 'sfc_line';
+        return PageSfcLine(title: title);
       },
     ),
     GoRoute(
-      path: '/d',
+      path: '/graphic',
       builder: (context, state) {
-        final title = state.extra as String? ?? 'Page D';
-        return PageD(title: title);
+        final title = state.extra as String? ?? 'graphic';
+        return PageGraphic(title: title);
       },
     ),
     GoRoute(
-      path: '/e',
+      path: '/graphic/line',
       builder: (context, state) {
-        final title = state.extra as String? ?? 'Page E';
-        return PageE(title: title);
+        final title = state.extra as String? ?? 'graphic_line';
+        return PageGraphicLine(title: title);
+      },
+    ),
+    GoRoute(
+      path: '/graphic/combine',
+      builder: (context, state) {
+        final title = state.extra as String? ?? 'graphic_combine';
+        return PageGraphicCombine(title: title);
       },
     ),
   ],

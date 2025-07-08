@@ -13,16 +13,6 @@ class LineChartGraphic extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Center(child: const Text('Figmaの折れ線グラフ')),
-        Center(
-          child: Image.asset(
-            'assets/line_graph.png',
-            height: 200,
-            fit: BoxFit.cover,
-          ),
-        ),
-        const SizedBox(height: 16),
-        Center(child: const Text('再現した折れ線グラフ')),
         Container(
           color: Colors.lightBlue[50],
           child: AspectRatio(

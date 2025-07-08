@@ -15,16 +15,6 @@ class CombineChartGraphic extends StatelessWidget {
 
     return Column(
       children: [
-        Center(child: const Text('Figmaの複合グラフ')),
-        Center(
-          child: Image.asset(
-            'assets/combine_graph.png',
-            height: 200,
-            fit: BoxFit.cover,
-          ),
-        ),
-        const SizedBox(height: 16),
-        Center(child: const Text('再現した複合グラフ')),
         // 軸タイトル
         Container(
           color: Colors.lightBlue[50],

@@ -19,20 +19,26 @@ class MainPage extends StatelessWidget {
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed:
-                  () => context.push('/b', extra: 'syncfusion_flutter_charts'),
+                  () =>
+                      context.push('/sfc', extra: 'syncfusion_flutter_charts'),
               child: const Text('syncfusion_flutter_charts'),
             ),
             const SizedBox(height: 16),
             ElevatedButton(
-              onPressed: () => context.push('/c', extra: 'graphic'),
+              onPressed: () => context.push('/graphic', extra: 'graphic'),
               child: const Text('graphic'),
             ),
             ElevatedButton(
-              onPressed: () => context.push('/d', extra: 'graphic_Line'),
+              onPressed:
+                  () => context.push('/graphic/line', extra: 'graphic_Line'),
               child: const Text('graphic_Line'),
             ),
             ElevatedButton(
-              onPressed: () => context.push('/e', extra: 'graphic_Combine'),
+              onPressed:
+                  () => context.push(
+                    '/graphic/combine',
+                    extra: 'graphic_Combine',
+                  ),
               child: const Text('graphic_Combine'),
             ),
           ],
