@@ -1,3 +1,4 @@
+import 'package:flutter_sample_widget/pages/page_sfc_combine.dart';
 import 'package:go_router/go_router.dart';
 
 import 'pages/main_page.dart';
@@ -12,10 +13,10 @@ final GoRouter router = GoRouter(
   routes: [
     GoRoute(path: '/', builder: (context, state) => const MainPage()),
     GoRoute(
-      path: '/a',
+      path: '/fl_chart',
       builder: (context, state) {
         final title = state.extra as String? ?? 'Page A';
-        return PageA(title: title);
+        return PageFL(title: title);
       },
     ),
     GoRoute(
@@ -30,6 +31,13 @@ final GoRouter router = GoRouter(
       builder: (context, state) {
         final title = state.extra as String? ?? 'sfc_line';
         return PageSfcLine(title: title);
+      },
+    ),
+    GoRoute(
+      path: '/sfc/combine',
+      builder: (context, state) {
+        final title = state.extra as String? ?? 'sfc_combine';
+        return PageSfcCombine(title: title);
       },
     ),
     GoRoute(

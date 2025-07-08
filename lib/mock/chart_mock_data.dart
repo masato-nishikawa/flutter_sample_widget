@@ -5,7 +5,7 @@ final Map<String, List<Map<String, dynamic>>> _dbRaw = {
   'fat': _fatRaw,
   'walk': _walkWeeklyRaw,
   'weight_weekly': _weightWeeklyRaw,
-  'fat_weekly': _FatWeeklyRaw,
+  'fat_weekly': _fatWeeklyRaw,
 };
 
 final List<Map<String, dynamic>> _weightRaw = [
@@ -42,7 +42,7 @@ final List<Map<String, dynamic>> _weightWeeklyRaw = [
   {'date': '土', 'value': 62},
 ];
 
-final List<Map<String, dynamic>> _FatWeeklyRaw = [
+final List<Map<String, dynamic>> _fatWeeklyRaw = [
   {'date': '日', 'value': 20},
   {'date': '月', 'value': 21},
   {'date': '火', 'value': 18},
@@ -74,7 +74,7 @@ List<Map<String, dynamic>> _combineWeekly() {
   for (int i = 0; i < _weightWeeklyRaw.length; i++) {
     final date = _weightWeeklyRaw[i]['date'];
     final weight = _weightWeeklyRaw[i]['value'];
-    final fat = _FatWeeklyRaw[i]['value'];
+    final fat = _fatWeeklyRaw[i]['value'];
     result.add({'date': date, 'weight': weight, 'fat': fat});
   }
   return result;

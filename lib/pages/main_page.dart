@@ -31,6 +31,14 @@ class MainPage extends StatelessWidget {
                   ),
               child: const Text('syncfusion_flutter_charts_line'),
             ),
+            ElevatedButton(
+              onPressed:
+                  () => context.push(
+                    '/sfc/combine',
+                    extra: 'syncfusion_flutter_charts_combine',
+                  ),
+              child: const Text('syncfusion_flutter_charts_combine'),
+            ),
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () => context.push('/graphic', extra: 'graphic'),

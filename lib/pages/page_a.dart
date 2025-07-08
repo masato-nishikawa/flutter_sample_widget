@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sample_widget/charts/fl_chart.dart';
 
-class PageA extends StatelessWidget {
+class PageFL extends StatelessWidget {
   final String title;
 
-  const PageA({super.key, required this.title});
+  const PageFL({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
