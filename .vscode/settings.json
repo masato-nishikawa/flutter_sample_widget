@@ -3,5 +3,8 @@
       "editor.formatOnSave": true,
       "editor.defaultFormatter": "Dart-Code.dart-code"
     },
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "cSpell.words": [
+      "Varset"
+    ]
   }

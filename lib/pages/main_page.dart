@@ -27,10 +27,13 @@ class MainPage extends StatelessWidget {
               onPressed: () => context.push('/c', extra: 'graphic'),
               child: const Text('graphic'),
             ),
-            const SizedBox(height: 48),
             ElevatedButton(
-              onPressed: () => context.push('/d', extra: 'test'),
-              child: const Text('test'),
+              onPressed: () => context.push('/d', extra: 'graphic_Line'),
+              child: const Text('graphic_Line'),
+            ),
+            ElevatedButton(
+              onPressed: () => context.push('/e', extra: 'graphic_Combine'),
+              child: const Text('graphic_Combine'),
             ),
           ],
         ),

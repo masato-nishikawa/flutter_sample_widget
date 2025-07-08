@@ -5,13 +5,11 @@ import 'pages/page_a.dart';
 import 'pages/page_b.dart';
 import 'pages/page_c.dart';
 import 'pages/page_d.dart';
+import 'pages/page_e.dart';
 
 final GoRouter router = GoRouter(
   routes: [
-    GoRoute(
-      path: '/',
-      builder: (context, state) => const MainPage(),
-    ),
+    GoRoute(path: '/', builder: (context, state) => const MainPage()),
     GoRoute(
       path: '/a',
       builder: (context, state) {
@@ -38,6 +36,13 @@ final GoRouter router = GoRouter(
       builder: (context, state) {
         final title = state.extra as String? ?? 'Page D';
         return PageD(title: title);
+      },
+    ),
+    GoRoute(
+      path: '/e',
+      builder: (context, state) {
+        final title = state.extra as String? ?? 'Page E';
+        return PageE(title: title);
       },
     ),
   ],

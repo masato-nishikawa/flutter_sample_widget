@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import '../charts/graphic_line.dart';
+import '../charts/graphic_combine.dart';
 
-class PageD extends StatelessWidget {
+class PageE extends StatelessWidget {
   final String title;
 
-  const PageD({super.key, required this.title});
+  const PageE({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class PageD extends StatelessWidget {
       appBar: AppBar(title: Text(title)),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(children: [const Expanded(child: LineChartGraphic())]),
+        child: Column(children: [const Expanded(child: CombineChartGraphic())]),
       ),
     );
   }
