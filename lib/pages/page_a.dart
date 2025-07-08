@@ -14,15 +14,9 @@ class PageA extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            const Expanded(
-              child: WeightFatChartFL(),
-            ),
-            const Expanded(
-              child: WeightChartFL(),
-            ),
-            const Expanded(
-              child: FatChartFL(),
-            ),
+            const Expanded(child: FatChartFL()),
+            const Expanded(child: WeightChartFL()),
+            const Expanded(child: WeightFatChartFL()),
           ],
         ),
       ),

@@ -3,14 +3,14 @@ import 'package:graphic/graphic.dart';
 import '../mock/chart_mock_data.dart';
 import 'package:intl/intl.dart';
 
-class WeightFatChart extends StatelessWidget {
-  const WeightFatChart({super.key});
+class WeightFatChartGraphic extends StatelessWidget {
+  const WeightFatChartGraphic({super.key});
 
   @override
   Widget build(BuildContext context) {
     // データを統合してグラフ用に変換
     final chartData = _prepareChartData();
-    
+
     return Column(
       children: [
         // 軸タイトル
@@ -18,15 +18,21 @@ class WeightFatChart extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 16.0),
           child: Row(
             children: [
-              Text('体重 (kg)', style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+              Text(
+                '体重 (kg)',
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+              ),
               Spacer(),
-              Text('体脂肪率 (%)', style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+              Text(
+                '体脂肪率 (%)',
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+              ),
             ],
           ),
         ),
         Container(
-          height: 300,
-          padding: const EdgeInsets.all(16),
+          height: 200,
+          padding: const EdgeInsets.all(8),
           child: Chart(
             data: chartData,
             variables: {
@@ -37,9 +43,7 @@ class WeightFatChart extends StatelessWidget {
               'weight': Variable(
                 accessor: (Map map) => (map['weight'] as num?) ?? 0,
               ),
-              'fat': Variable(
-                accessor: (Map map) => (map['fat'] as num?) ?? 0,
-              ),
+              'fat': Variable(accessor: (Map map) => (map['fat'] as num?) ?? 0),
             },
             marks: [
               // 体重の棒グラフ（nullでない場合のみ表示）
@@ -48,7 +52,7 @@ class WeightFatChart extends StatelessWidget {
                 color: ColorEncode(
                   value: Colors.cyan,
                   updaters: {
-                    'tap': {true: (_) => Colors.cyan.withOpacity(0.7)}
+                    'tap': {true: (_) => Colors.cyan},
                   },
                 ),
                 size: SizeEncode(value: 20),
@@ -56,37 +60,23 @@ class WeightFatChart extends StatelessWidget {
               // 体脂肪率の折れ線グラフ（nullでない場合のみ表示）
               LineMark(
                 position: Varset('date') * Varset('fat'),
-                color: ColorEncode(value: Colors.lightBlue),
+                color: ColorEncode(value: Colors.red),
                 size: SizeEncode(value: 2),
               ),
               // 体脂肪率のポイント（nullでない場合のみ表示）
               PointMark(
                 position: Varset('date') * Varset('fat'),
-                color: ColorEncode(value: Colors.lightBlue),
+                color: ColorEncode(value: Colors.red),
                 size: SizeEncode(value: 6),
               ),
             ],
             axes: [
-              Defaults.horizontalAxis
-                ..label = LabelStyle(
-                  textStyle: const TextStyle(fontSize: 10),
-                ),
+              Defaults.horizontalAxis,
+              Defaults.verticalAxis..variable = ('weight'),
               Defaults.verticalAxis
-                ..label = LabelStyle(
-                  textStyle: const TextStyle(fontSize: 10),
-                ),
+                ..variable = ('fat')
+                ..position = 1.05,
             ],
-            selections: {
-              'tap': PointSelection(
-                on: {GestureType.tap},
-              )
-            },
-            tooltip: TooltipGuide(
-              followPointer: [false, true],
-              align: Alignment.topLeft,
-              offset: const Offset(-20, -20),
-            ),
-            crosshair: CrosshairGuide(followPointer: [false, true]),
           ),
         ),
       ],
@@ -95,7 +85,7 @@ class WeightFatChart extends StatelessWidget {
 
   List<Map<String, dynamic>> _prepareChartData() {
     final Map<String, Map<String, dynamic>> combined = {};
-    
+
     // 体重データを追加（日付フォーマット済み）
     for (final weightData in mockWeightData) {
       final formattedDate = _formatDate(weightData.date);
@@ -105,7 +95,7 @@ class WeightFatChart extends StatelessWidget {
         'fat': 0, // デフォルト値
       };
     }
-    
+
     // 体脂肪データを追加（日付フォーマット済み）
     for (final fatData in mockFatData) {
       final formattedDate = _formatDate(fatData.date);
@@ -120,7 +110,7 @@ class WeightFatChart extends StatelessWidget {
         };
       }
     }
-    
+
     return combined.values.toList()
       ..sort((a, b) => a['date'].compareTo(b['date']));
   }
@@ -135,3 +125,113 @@ class WeightFatChart extends StatelessWidget {
   }
 }
 
+class WeightChartGraphic extends StatelessWidget {
+  const WeightChartGraphic({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final data =
+        mockWeightData
+            .map(
+              (e) => {
+                'date': DateFormat('MM/dd').format(DateTime.parse(e.date)),
+                'weight': e.value,
+              },
+            )
+            .toList();
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Padding(
+          padding: EdgeInsets.all(8),
+          child: Text(
+            '体重の推移',
+            style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+          ),
+        ),
+        Container(
+          height: 200,
+          padding: const EdgeInsets.all(8),
+          child: Chart(
+            data: data,
+            variables: {
+              'date': Variable(
+                accessor:
+                    (map) => (map as Map<String, dynamic>)['date'] as String,
+              ),
+              'weight': Variable(
+                accessor:
+                    (map) => (map as Map<String, dynamic>)['weight'] as num,
+              ),
+            },
+            marks: [
+              IntervalMark(
+                position: Varset('date') * Varset('weight'),
+                color: ColorEncode(value: Colors.cyan),
+              ),
+            ],
+            axes: [Defaults.horizontalAxis, Defaults.verticalAxis],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class FatChartGraphic extends StatelessWidget {
+  const FatChartGraphic({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final data =
+        mockFatData
+            .map(
+              (e) => {
+                'date': DateFormat('MM/dd').format(DateTime.parse(e.date)),
+                'fat': e.value,
+              },
+            )
+            .toList();
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Padding(
+          padding: EdgeInsets.all(8),
+          child: Text(
+            '体脂肪率の推移',
+            style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+          ),
+        ),
+        Container(
+          height: 200,
+          padding: const EdgeInsets.all(8),
+          child: Chart(
+            data: data,
+            variables: {
+              'date': Variable(
+                accessor:
+                    (map) => (map as Map<String, dynamic>)['date'] as String,
+              ),
+              'fat': Variable(
+                accessor: (map) => (map as Map<String, dynamic>)['fat'] as num,
+              ),
+            },
+            marks: [
+              LineMark(
+                position: Varset('date') * Varset('fat'),
+                color: ColorEncode(value: Colors.pink),
+              ),
+              PointMark(
+                position: Varset('date') * Varset('fat'),
+                color: ColorEncode(value: Colors.pink),
+              ),
+            ],
+            axes: [Defaults.horizontalAxis, Defaults.verticalAxis],
+          ),
+        ),
+      ],
+    );
+  }
+}

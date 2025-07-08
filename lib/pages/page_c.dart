@@ -14,9 +14,9 @@ class PageC extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            const Expanded(
-              child: WeightFatChart(),
-            ),
+            const Expanded(child: FatChartGraphic()),
+            const Expanded(child: WeightChartGraphic()),
+            const Expanded(child: WeightFatChartGraphic()),
           ],
         ),
       ),

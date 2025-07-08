@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../charts/syncfusion_flutter_charts.dart'; 
+import '../charts/syncfusion_flutter_charts.dart';
 
 class PageB extends StatelessWidget {
   final String title;
@@ -14,15 +14,9 @@ class PageB extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            const Expanded( 
-              child: WeightFatChart(),
-            ),
-            const Expanded( 
-              child: WeightChart(),
-            ),
-            const Expanded( 
-              child: FatChart(),
-            ),
+            const Expanded(child: FatChartSFC()),
+            const Expanded(child: WeightChartSFC()),
+            const Expanded(child: WeightFatChartSFC()),
           ],
         ),
       ),

@@ -4,8 +4,8 @@ import '../models/chart_data.dart';
 import '../mock/chart_mock_data.dart';
 import 'package:intl/intl.dart';
 
-class WeightFatChart extends StatelessWidget {
-  const WeightFatChart({super.key});
+class WeightFatChartSFC extends StatelessWidget {
+  const WeightFatChartSFC({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -45,15 +45,15 @@ class WeightFatChart extends StatelessWidget {
           yValueMapper: (data, _) => data.value,
           yAxisName: 'fatAxis',
           markerSettings: const MarkerSettings(isVisible: true),
-          color: Colors.lightBlue,
+          color: Colors.red,
         ),
       ],
     );
   }
 }
 
-class WeightChart extends StatelessWidget {
-  const WeightChart({super.key});
+class WeightChartSFC extends StatelessWidget {
+  const WeightChartSFC({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -85,8 +85,8 @@ class WeightChart extends StatelessWidget {
   }
 }
 
-class FatChart extends StatelessWidget {
-  const FatChart({super.key});
+class FatChartSFC extends StatelessWidget {
+  const FatChartSFC({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -111,11 +111,10 @@ class FatChart extends StatelessWidget {
           dataSource: mockFatData,
           xValueMapper: (data, _) => data.date,
           yValueMapper: (data, _) => data.value,
-          color: Colors.lightBlue,
+          color: Colors.red,
           markerSettings: const MarkerSettings(isVisible: true),
         ),
       ],
     );
   }
 }
-
