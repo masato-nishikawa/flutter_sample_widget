@@ -2,7 +2,9 @@ import 'package:flutter_sample_widget/pages/page_sfc_combine.dart';
 import 'package:go_router/go_router.dart';
 
 import 'pages/main_page.dart';
-import 'pages/page_a.dart';
+import 'pages/page_fl_chart.dart';
+import 'pages/page_fl_chart_line.dart';
+import 'pages/page_fl_chart_combine.dart';
 import 'pages/page_sfc.dart';
 import 'pages/page_sfc_line.dart';
 import 'pages/page_graphic.dart';
@@ -15,8 +17,22 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/fl_chart',
       builder: (context, state) {
-        final title = state.extra as String? ?? 'Page A';
-        return PageFL(title: title);
+        final title = state.extra as String? ?? 'fl_chart';
+        return PageFl(title: title);
+      },
+    ),
+    GoRoute(
+      path: '/fl_chart/line',
+      builder: (context, state) {
+        final title = state.extra as String? ?? 'fl_chart';
+        return PageFlLine(title: title);
+      },
+    ),
+    GoRoute(
+      path: '/fl_chart/combine',
+      builder: (context, state) {
+        final title = state.extra as String? ?? 'fl_chart';
+        return PageFlCombine(title: title);
       },
     ),
     GoRoute(

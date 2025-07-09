@@ -13,8 +13,21 @@ class MainPage extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             ElevatedButton(
-              onPressed: () => context.push('/a', extra: 'fl_chart'),
+              onPressed: () => context.push('/fl_chart', extra: 'fl_chart'),
               child: const Text('fl_chart'),
+            ),
+            ElevatedButton(
+              onPressed:
+                  () => context.push('/fl_chart/line', extra: 'fl_chart_line'),
+              child: const Text('fl_chart_line'),
+            ),
+            ElevatedButton(
+              onPressed:
+                  () => context.push(
+                    '/fl_chart/combine',
+                    extra: 'fl_chart_combine',
+                  ),
+              child: const Text('fl_chart_combine'),
             ),
             const SizedBox(height: 16),
             ElevatedButton(
