@@ -1,6 +1,5 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-// import '../models/chart_data.dart';
 import '../mock/chart_mock_data.dart';
 
 class WeightFatChartFL extends StatelessWidget {
