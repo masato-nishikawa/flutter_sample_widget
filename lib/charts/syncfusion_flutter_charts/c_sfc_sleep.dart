@@ -31,28 +31,6 @@ class SleepChartSFC extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // 全データを取得
-    final allData = convertToSleepSegments(mockSleepWeeklyData);
-
-    // 日付のリストを作成（順序を保証）
-    final allDates = allData.map((e) => e.date).toSet().toList();
-
-    // 各日付に対してデータが存在することを保証
-    List<SleepSegment> getSegmentDataForDates(double from, double to) {
-      final filteredData =
-          allData.where((s) => s.start >= from && s.end <= to).toList();
-
-      // 各日付に対してデータを作成（存在しない場合は空のセグメント）
-      return allDates.map((date) {
-        final existingData = filteredData.where((s) => s.date == date).toList();
-        if (existingData.isEmpty) {
-          // データが存在しない場合は、非表示のセグメントを作成
-          return SleepSegment(date: date, start: from, end: from);
-        }
-        return existingData.first;
-      }).toList();
-    }
-
     return Scaffold(
       body: Column(
         children: [
@@ -73,7 +51,7 @@ class SleepChartSFC extends StatelessWidget {
               ),
               series: <CartesianSeries>[
                 RangeColumnSeries<SleepSegment, String>(
-                  dataSource: getSegmentDataForDates(19, 24),
+                  dataSource: convertToSleepSegments(mockSleepWeeklyData),
                   xValueMapper: (s, _) => s.date,
                   lowValueMapper: (s, _) => s.start,
                   highValueMapper: (s, _) => s.end,
@@ -98,7 +76,7 @@ class SleepChartSFC extends StatelessWidget {
               ),
               series: <CartesianSeries>[
                 RangeColumnSeries<SleepSegment, String>(
-                  dataSource: getSegmentDataForDates(0, 15),
+                  dataSource: convertToSleepSegments(mockSleepWeeklyData),
                   xValueMapper: (s, _) => s.date,
                   lowValueMapper: (s, _) => s.start,
                   highValueMapper: (s, _) => s.end,
