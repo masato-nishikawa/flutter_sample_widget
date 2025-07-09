@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../charts/syncfusion_flutter_charts/sfc_combine.dart';
+import '../../charts/syncfusion_flutter_charts/c_sfc_combine.dart';
 
 class PageSfcCombine extends StatelessWidget {
   final String title;

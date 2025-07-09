@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sample_widget/charts/fl_chart/fl_chart.dart';
+import 'package:flutter_sample_widget/charts/fl_chart/c_fl_chart.dart';
 
 class PageFl extends StatelessWidget {
   final String title;

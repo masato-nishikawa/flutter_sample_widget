@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../charts/graphic/graphic_combine.dart';
+import '../../charts/graphic/c_graphic_combine.dart';
 
 class PageGraphicCombine extends StatelessWidget {
   final String title;

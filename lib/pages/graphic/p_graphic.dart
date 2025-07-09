@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sample_widget/charts/graphic/graphic.dart';
+import 'package:flutter_sample_widget/charts/graphic/c_graphic.dart';
 
 class PageGraphic extends StatelessWidget {
   final String title;

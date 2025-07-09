@@ -1,16 +1,16 @@
-import 'package:flutter_sample_widget/pages/syncfusion_flutter_charts/page_sfc_combine.dart';
+import 'package:flutter_sample_widget/pages/syncfusion_flutter_charts/p_sfc_combine.dart';
 import 'package:go_router/go_router.dart';
 
 import 'pages/main_page.dart';
-import 'pages/fl_chart/fl_chart.dart';
-import 'pages/fl_chart/fl_chart_line.dart';
-import 'pages/fl_chart/fl_chart_combine.dart';
-import 'pages/syncfusion_flutter_charts/page_sfc.dart';
-import 'pages/syncfusion_flutter_charts/page_sfc_line.dart';
-import 'pages/graphic/graphic.dart';
-import 'pages/graphic/graphic_line.dart';
-import 'pages/graphic/graphic_combine.dart';
-import 'pages/graphic/graphic_scroll.dart';
+import 'pages/fl_chart/p_fl_chart.dart';
+import 'pages/fl_chart/p_fl_chart_line.dart';
+import 'pages/fl_chart/p_fl_chart_combine.dart';
+import 'pages/syncfusion_flutter_charts/p_sfc.dart';
+import 'pages/syncfusion_flutter_charts/p_sfc_line.dart';
+import 'pages/graphic/p_graphic.dart';
+import 'pages/graphic/p_graphic_line.dart';
+import 'pages/graphic/p_graphic_combine.dart';
+import 'pages/graphic/p_graphic_scroll.dart';
 
 final GoRouter router = GoRouter(
   routes: [

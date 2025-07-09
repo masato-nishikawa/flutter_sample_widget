@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../charts/graphic/graphic_line.dart';
+import '../../charts/graphic/c_graphic_line.dart';
 
 class PageGraphicLine extends StatelessWidget {
   final String title;
