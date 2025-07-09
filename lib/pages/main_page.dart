@@ -70,6 +70,12 @@ class MainPage extends StatelessWidget {
                   ),
               child: const Text('graphic_Combine'),
             ),
+            ElevatedButton(
+              onPressed:
+                  () =>
+                      context.push('/graphic/scroll', extra: 'graphic_Scroll'),
+              child: const Text('graphic_Scroll'),
+            ),
           ],
         ),
       ),

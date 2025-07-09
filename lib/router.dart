@@ -10,6 +10,7 @@ import 'pages/syncfusion_flutter_charts/page_sfc_line.dart';
 import 'pages/graphic/graphic.dart';
 import 'pages/graphic/graphic_line.dart';
 import 'pages/graphic/graphic_combine.dart';
+import 'pages/graphic/graphic_scroll.dart';
 
 final GoRouter router = GoRouter(
   routes: [
@@ -75,6 +76,13 @@ final GoRouter router = GoRouter(
       builder: (context, state) {
         final title = state.extra as String? ?? 'graphic_combine';
         return PageGraphicCombine(title: title);
+      },
+    ),
+    GoRoute(
+      path: '/graphic/scroll',
+      builder: (context, state) {
+        final title = state.extra as String? ?? 'graphic_scroll';
+        return PageGraphicLineScroll(title: title);
       },
     ),
   ],

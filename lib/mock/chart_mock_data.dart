@@ -3,9 +3,10 @@ import '../models/chart_model.dart';
 final Map<String, List<Map<String, dynamic>>> _dbRaw = {
   'weight': _weightRaw,
   'fat': _fatRaw,
-  'walk': _walkWeeklyRaw,
+  'walk_weekly': _walkWeeklyRaw,
   'weight_weekly': _weightWeeklyRaw,
   'fat_weekly': _fatWeeklyRaw,
+  'walk_monthly': _walkMonthlyRaw,
 };
 
 final List<Map<String, dynamic>> _weightRaw = [
@@ -52,6 +53,40 @@ final List<Map<String, dynamic>> _fatWeeklyRaw = [
   {'date': '土', 'value': 18},
 ];
 
+final List<Map<String, dynamic>> _walkMonthlyRaw = [
+  {'date': '2024-07-01', 'value': 6123},
+  {'date': '2024-07-02', 'value': 7841},
+  {'date': '2024-07-03', 'value': 5340},
+  {'date': '2024-07-04', 'value': 8742},
+  {'date': '2024-07-05', 'value': 7031},
+  {'date': '2024-07-06', 'value': 6678},
+  {'date': '2024-07-07', 'value': 7900},
+  {'date': '2024-07-08', 'value': 8420},
+  {'date': '2024-07-09', 'value': 7523},
+  {'date': '2024-07-10', 'value': 6987},
+  {'date': '2024-07-11', 'value': 8201},
+  {'date': '2024-07-12', 'value': 5912},
+  {'date': '2024-07-13', 'value': 6110},
+  {'date': '2024-07-14', 'value': 8880},
+  {'date': '2024-07-15', 'value': 7402},
+  {'date': '2024-07-16', 'value': 5990},
+  {'date': '2024-07-17', 'value': 6633},
+  {'date': '2024-07-18', 'value': 9000},
+  {'date': '2024-07-19', 'value': 7004},
+  {'date': '2024-07-20', 'value': 8233},
+  {'date': '2024-07-21', 'value': 7215},
+  {'date': '2024-07-22', 'value': 5411},
+  {'date': '2024-07-23', 'value': 6032},
+  {'date': '2024-07-24', 'value': 8740},
+  {'date': '2024-07-25', 'value': 7821},
+  {'date': '2024-07-26', 'value': 6900},
+  {'date': '2024-07-27', 'value': 8123},
+  {'date': '2024-07-28', 'value': 6599},
+  {'date': '2024-07-29', 'value': 7012},
+  {'date': '2024-07-30', 'value': 7310},
+  {'date': '2024-07-31', 'value': 8050},
+];
+
 final List<ChartDate> mockWeightData =
     (_dbRaw['weight'] ?? []).map((e) => ChartDate.fromJson(e)).toList();
 
@@ -59,13 +94,16 @@ final List<ChartDate> mockFatData =
     (_dbRaw['fat'] ?? []).map((e) => ChartDate.fromJson(e)).toList();
 
 final List<ChartDate> mockWalkWeeklyData =
-    (_dbRaw['walk'] ?? []).map((e) => ChartDate.fromJson(e)).toList();
+    (_dbRaw['walk_weekly'] ?? []).map((e) => ChartDate.fromJson(e)).toList();
 
 final List<ChartDate> mockWeightWeeklyData =
     (_dbRaw['weight_weekly'] ?? []).map((e) => ChartDate.fromJson(e)).toList();
 
 final List<ChartDate> mockFatWeeklyData =
     (_dbRaw['fat_weekly'] ?? []).map((e) => ChartDate.fromJson(e)).toList();
+
+final List<ChartDate> mockWalkMonthlyData =
+    (_dbRaw['walk_monthly'] ?? []).map((e) => ChartDate.fromJson(e)).toList();
 
 final List<Map<String, dynamic>> combinedWeeklyData = _combineWeekly();
 
