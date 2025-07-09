@@ -11,6 +11,7 @@ import 'pages/syncfusion_flutter_charts/p_sfc.dart';
 import 'pages/syncfusion_flutter_charts/p_sfc_line.dart';
 import 'pages/syncfusion_flutter_charts/p_sfc_combine.dart';
 import 'pages/syncfusion_flutter_charts/p_sfc_scroll.dart';
+import 'pages/syncfusion_flutter_charts/p_sfc_sleep.dart';
 // graphic 関連
 import 'pages/graphic/p_graphic.dart';
 import 'pages/graphic/p_graphic_line.dart';
@@ -71,6 +72,12 @@ final GoRouter router = GoRouter(
       builder:
           (context, state) =>
               PageSfcScroll(title: state.extra as String? ?? 'sfc_scroll'),
+    ),
+    GoRoute(
+      path: '/sfc/sleep',
+      builder:
+          (context, state) =>
+              PageSfcSleep(title: state.extra as String? ?? 'sfc_sleep'),
     ),
     // graphic
     GoRoute(

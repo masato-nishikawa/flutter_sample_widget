@@ -70,6 +70,10 @@ class MainPage extends StatelessWidget {
                     () => context.push('/sfc/scroll', extra: 'sfc_scroll'),
                 child: const Text('sfc_scroll'),
               ),
+              ElevatedButton(
+                onPressed: () => context.push('/sfc/sleep', extra: 'sfc_sleep'),
+                child: const Text('sfc_sleep'),
+              ),
 
               const SizedBox(height: 24),
 
