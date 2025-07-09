@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class ChartDate {
   final String date;
   final double value;
@@ -10,4 +12,18 @@ class ChartDate {
       value: (json['value'] as num).toDouble(),
     );
   }
+}
+
+class SleepSession {
+  final TimeOfDay startTime;
+  final TimeOfDay endTime;
+
+  SleepSession({required this.startTime, required this.endTime});
+}
+
+class SleepDayData {
+  final String weekday; // 日〜土
+  final List<SleepSession> sessions; // 複数の睡眠セッション
+
+  SleepDayData({required this.weekday, required this.sessions});
 }

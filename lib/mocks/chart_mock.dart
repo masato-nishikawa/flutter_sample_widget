@@ -1,4 +1,5 @@
-import '../models/chart_model.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_sample_widget/models/chart_model.dart';
 
 final Map<String, List<Map<String, dynamic>>> _dbRaw = {
   'weight': _weightRaw,
@@ -85,6 +86,80 @@ final List<Map<String, dynamic>> _walkMonthlyRaw = [
   {'date': '2024-07-29', 'value': 7012},
   {'date': '2024-07-30', 'value': 7310},
   {'date': '2024-07-31', 'value': 8050},
+];
+
+final List<SleepDayData> mockSleepWeekData = [
+  SleepDayData(
+    weekday: '月',
+    sessions: [
+      SleepSession(
+        startTime: const TimeOfDay(hour: 23, minute: 0),
+        endTime: const TimeOfDay(hour: 6, minute: 30),
+      ),
+    ],
+  ),
+  SleepDayData(
+    weekday: '火',
+    sessions: [
+      SleepSession(
+        startTime: const TimeOfDay(hour: 0, minute: 30),
+        endTime: const TimeOfDay(hour: 6, minute: 45),
+      ),
+      SleepSession(
+        startTime: const TimeOfDay(hour: 13, minute: 0),
+        endTime: const TimeOfDay(hour: 13, minute: 45),
+      ),
+    ],
+  ),
+  SleepDayData(
+    weekday: '水',
+    sessions: [
+      SleepSession(
+        startTime: const TimeOfDay(hour: 1, minute: 15),
+        endTime: const TimeOfDay(hour: 7, minute: 0),
+      ),
+    ],
+  ),
+  SleepDayData(
+    weekday: '木',
+    sessions: [
+      SleepSession(
+        startTime: const TimeOfDay(hour: 0, minute: 0),
+        endTime: const TimeOfDay(hour: 5, minute: 30),
+      ),
+      SleepSession(
+        startTime: const TimeOfDay(hour: 14, minute: 0),
+        endTime: const TimeOfDay(hour: 14, minute: 30),
+      ),
+    ],
+  ),
+  SleepDayData(
+    weekday: '金',
+    sessions: [
+      SleepSession(
+        startTime: const TimeOfDay(hour: 23, minute: 45),
+        endTime: const TimeOfDay(hour: 7, minute: 15),
+      ),
+    ],
+  ),
+  SleepDayData(
+    weekday: '土',
+    sessions: [
+      SleepSession(
+        startTime: const TimeOfDay(hour: 2, minute: 0),
+        endTime: const TimeOfDay(hour: 10, minute: 0),
+      ),
+    ],
+  ),
+  SleepDayData(
+    weekday: '日',
+    sessions: [
+      SleepSession(
+        startTime: const TimeOfDay(hour: 1, minute: 0),
+        endTime: const TimeOfDay(hour: 9, minute: 30),
+      ),
+    ],
+  ),
 ];
 
 final List<ChartDate> mockWeightData =
