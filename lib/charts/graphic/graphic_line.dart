@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graphic/graphic.dart';
-import '../mock/chart_mock_data.dart';
+import '../../mock/chart_mock_data.dart';
 import 'package:intl/intl.dart';
 
 final NumberFormat commaFormat = NumberFormat('#,###');

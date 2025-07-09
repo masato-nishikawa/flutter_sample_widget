@@ -1,4 +1,4 @@
-import '../models/chart_data.dart';
+import '../models/chart_model.dart';
 
 final Map<String, List<Map<String, dynamic>>> _dbRaw = {
   'weight': _weightRaw,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import '../models/chart_data.dart';
-import '../mock/chart_mock_data.dart';
+import '../../models/chart_model.dart';
+import '../../mock/chart_mock_data.dart';
 import 'package:intl/intl.dart';
 
 class CombineChartSFC extends StatelessWidget {

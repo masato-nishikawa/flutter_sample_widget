@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sample_widget/charts/fl_chart_combine.dart';
+import '../../charts/graphic/graphic_line.dart';
 
-class PageFlCombine extends StatelessWidget {
+class PageGraphicLine extends StatelessWidget {
   final String title;
 
-  const PageFlCombine({super.key, required this.title});
+  const PageGraphicLine({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -17,24 +17,14 @@ class PageFlCombine extends StatelessWidget {
             Center(child: const Text('Figmaの折れ線グラフ')),
             Center(
               child: Image.asset(
-                'assets/combine_graph.png',
+                'assets/line_graph.png',
                 height: 200,
                 fit: BoxFit.cover,
               ),
             ),
             const SizedBox(height: 16),
             Center(child: const Text('再現した折れ線グラフ')),
-            SizedBox(
-              height: 200,
-              child: Stack(
-                children: [
-                  Container(color: Colors.lightBlue[50]),
-                  // チャートを重ねて表示
-                  BarChartCombineFL(),
-                  LineChartCombineFL(),
-                ],
-              ),
-            ),
+            const Expanded(child: LineChartGraphic()),
           ],
         ),
       ),

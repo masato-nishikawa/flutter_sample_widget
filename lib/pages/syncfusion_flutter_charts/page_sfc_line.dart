@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sample_widget/charts/fl_chart_line.dart';
+import '../../charts/syncfusion_flutter_charts/sfc_line.dart';
 
-class PageFlLine extends StatelessWidget {
+class PageSfcLine extends StatelessWidget {
   final String title;
 
-  const PageFlLine({super.key, required this.title});
+  const PageSfcLine({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class PageFlLine extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             Center(child: const Text('再現した折れ線グラフ')),
-            SizedBox(height: 200, child: LineChartFL()),
+            SizedBox(height: 200, child: LineChartSFC()),
           ],
         ),
       ),
