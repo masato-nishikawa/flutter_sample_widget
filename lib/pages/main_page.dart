@@ -103,6 +103,12 @@ class MainPage extends StatelessWidget {
                     ),
                 child: const Text('graphic_scroll'),
               ),
+              ElevatedButton(
+                onPressed:
+                    () =>
+                        context.push('/graphic/sleep', extra: 'graphic_sleep'),
+                child: const Text('graphic_sleep'),
+              ),
             ],
           ),
         ),

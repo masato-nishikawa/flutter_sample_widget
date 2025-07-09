@@ -16,6 +16,7 @@ import 'pages/graphic/p_graphic.dart';
 import 'pages/graphic/p_graphic_line.dart';
 import 'pages/graphic/p_graphic_combine.dart';
 import 'pages/graphic/p_graphic_scroll.dart';
+import 'pages/graphic/p_graphic_sleep.dart';
 
 final GoRouter router = GoRouter(
   routes: [
@@ -96,6 +97,13 @@ final GoRouter router = GoRouter(
       builder:
           (context, state) => PageGraphicLineScroll(
             title: state.extra as String? ?? 'graphic_scroll',
+          ),
+    ),
+    GoRoute(
+      path: '/graphic/sleep',
+      builder:
+          (context, state) => PageGraphicBarSleep(
+            title: state.extra as String? ?? 'graphic_sleep',
           ),
     ),
   ],

@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_sample_widget/models/chart_model.dart';
 
 final Map<String, List<Map<String, dynamic>>> _dbRaw = {
@@ -8,6 +7,7 @@ final Map<String, List<Map<String, dynamic>>> _dbRaw = {
   'weight_weekly': _weightWeeklyRaw,
   'fat_weekly': _fatWeeklyRaw,
   'walk_monthly': _walkMonthlyRaw,
+  // 'sleep_monthly': _sleepWeeklyRaw,
 };
 
 final List<Map<String, dynamic>> _weightRaw = [
@@ -88,78 +88,19 @@ final List<Map<String, dynamic>> _walkMonthlyRaw = [
   {'date': '2024-07-31', 'value': 8050},
 ];
 
-final List<SleepDayData> mockSleepWeekData = [
-  SleepDayData(
-    weekday: '月',
-    sessions: [
-      SleepSession(
-        startTime: const TimeOfDay(hour: 23, minute: 0),
-        endTime: const TimeOfDay(hour: 6, minute: 30),
-      ),
-    ],
-  ),
-  SleepDayData(
-    weekday: '火',
-    sessions: [
-      SleepSession(
-        startTime: const TimeOfDay(hour: 0, minute: 30),
-        endTime: const TimeOfDay(hour: 6, minute: 45),
-      ),
-      SleepSession(
-        startTime: const TimeOfDay(hour: 13, minute: 0),
-        endTime: const TimeOfDay(hour: 13, minute: 45),
-      ),
-    ],
-  ),
-  SleepDayData(
-    weekday: '水',
-    sessions: [
-      SleepSession(
-        startTime: const TimeOfDay(hour: 1, minute: 15),
-        endTime: const TimeOfDay(hour: 7, minute: 0),
-      ),
-    ],
-  ),
-  SleepDayData(
-    weekday: '木',
-    sessions: [
-      SleepSession(
-        startTime: const TimeOfDay(hour: 0, minute: 0),
-        endTime: const TimeOfDay(hour: 5, minute: 30),
-      ),
-      SleepSession(
-        startTime: const TimeOfDay(hour: 14, minute: 0),
-        endTime: const TimeOfDay(hour: 14, minute: 30),
-      ),
-    ],
-  ),
-  SleepDayData(
-    weekday: '金',
-    sessions: [
-      SleepSession(
-        startTime: const TimeOfDay(hour: 23, minute: 45),
-        endTime: const TimeOfDay(hour: 7, minute: 15),
-      ),
-    ],
-  ),
-  SleepDayData(
-    weekday: '土',
-    sessions: [
-      SleepSession(
-        startTime: const TimeOfDay(hour: 2, minute: 0),
-        endTime: const TimeOfDay(hour: 10, minute: 0),
-      ),
-    ],
-  ),
-  SleepDayData(
-    weekday: '日',
-    sessions: [
-      SleepSession(
-        startTime: const TimeOfDay(hour: 1, minute: 0),
-        endTime: const TimeOfDay(hour: 9, minute: 30),
-      ),
-    ],
-  ),
+final List<Map<String, dynamic>> _sleepWeeklyRaw = [
+  {'date': '日', 'start': 22, 'end': 4},
+  {'date': '月', 'start': 0, 'end': 5.5},
+  {'date': '月', 'start': 19, 'end': 21},
+  {'date': '火', 'start': 23.5, 'end': 4},
+  {'date': '火', 'start': 10, 'end': 12},
+  {'date': '水', 'start': 1, 'end': 6},
+  {'date': '木', 'start': 23, 'end': 4.5},
+  {'date': '木', 'start': 11, 'end': 12},
+  {'date': '木', 'start': 17.5, 'end': 19},
+  {'date': '金', 'start': 0, 'end': 5},
+  {'date': '土', 'start': 1, 'end': 3},
+  {'date': '土', 'start': 5, 'end': 8},
 ];
 
 final List<ChartDate> mockWeightData =
@@ -179,6 +120,26 @@ final List<ChartDate> mockFatWeeklyData =
 
 final List<ChartDate> mockWalkMonthlyData =
     (_dbRaw['walk_monthly'] ?? []).map((e) => ChartDate.fromJson(e)).toList();
+
+List<Map<String, dynamic>> unfoldSleepData(List<Map<String, dynamic>> raw) {
+  final result = <Map<String, dynamic>>[];
+  for (var entry in raw) {
+    final date = entry['date'];
+    final start = entry['start'] as num;
+    final end = entry['end'] as num;
+    if (start < end) {
+      result.add({'date': date, 'start': start, 'end': end});
+    } else {
+      result.add({'date': date, 'start': start, 'end': 24});
+      result.add({'date': date, 'start': 0, 'end': end});
+    }
+  }
+  return result;
+}
+
+final List<Map<String, dynamic>> mockSleepWeeklyData = unfoldSleepData(
+  _sleepWeeklyRaw,
+);
 
 final List<Map<String, dynamic>> combinedWeeklyData = _combineWeekly();
 
