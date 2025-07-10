@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sample_widget/theme/app_colors.dart';
+import 'package:flutter_sample_widget/utils/color_extention.dart';
 import 'package:go_router/go_router.dart';
 
 class MainPage extends StatelessWidget {
@@ -7,124 +9,71 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('メインページ')),
-      body: Center(
-        child: SingleChildScrollView(
-          // 長くなる場合に備えて追加
+      appBar: AppBar(
+        title: const Text('メインページ'),
+        backgroundColor: appColorMap['Mirallel Blue']!.toColor(),
+      ),
+      backgroundColor: appColorMap['Mirallel Light Sky Blue']!.toColor(),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
           child: Column(
-            mainAxisSize: MainAxisSize.min,
             children: [
-              // ---------------- fl_chart ----------------
-              const Text(
-                'fl_chart',
-                style: TextStyle(fontWeight: FontWeight.bold),
+              _buildChartCategory(
+                title: 'fl_chart',
+                routes: {
+                  'fl_chart': '/fl_chart',
+                  'fl_chart_line': '/fl_chart/line',
+                  'fl_chart_combine': '/fl_chart/combine',
+                  'fl_chart_scroll': '/fl_chart/scroll',
+                  'fl_chart_sleep': '/fl_chart/sleep',
+                  'fl_chart_radar': '/fl_chart/radar',
+                },
+                context: context,
               ),
-              ElevatedButton(
-                onPressed: () => context.push('/fl_chart', extra: 'fl_chart'),
-                child: const Text('fl_chart'),
+              _buildChartCategory(
+                title: 'syncfusion_flutter_charts',
+                routes: {
+                  'sfc': '/sfc',
+                  'sfc_line': '/sfc/line',
+                  'sfc_combine': '/sfc/combine',
+                  'sfc_scroll': '/sfc/scroll',
+                  'sfc_sleep': '/sfc/sleep',
+                },
+                context: context,
               ),
-              ElevatedButton(
-                onPressed:
-                    () =>
-                        context.push('/fl_chart/line', extra: 'fl_chart_line'),
-                child: const Text('fl_chart_line'),
-              ),
-              ElevatedButton(
-                onPressed:
-                    () => context.push(
-                      '/fl_chart/combine',
-                      extra: 'fl_chart_combine',
-                    ),
-                child: const Text('fl_chart_combine'),
-              ),
-              ElevatedButton(
-                onPressed:
-                    () => context.push(
-                      '/fl_chart/scroll',
-                      extra: 'fl_chart_scroll',
-                    ),
-                child: const Text('fl_chart_scroll'),
-              ),
-              ElevatedButton(
-                onPressed:
-                    () => context.push(
-                      '/fl_chart/sleep',
-                      extra: 'fl_chart_sleep',
-                    ),
-                child: const Text('fl_chart_sleep'),
-              ),
-              const SizedBox(height: 24),
-
-              // ---------------- syncfusion_flutter_charts ----------------
-              const Text(
-                'syncfusion_flutter_charts',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              ElevatedButton(
-                onPressed: () => context.push('/sfc', extra: 'sfc'),
-                child: const Text('sfc'),
-              ),
-              ElevatedButton(
-                onPressed: () => context.push('/sfc/line', extra: 'sfc_line'),
-                child: const Text('sfc_line'),
-              ),
-              ElevatedButton(
-                onPressed:
-                    () => context.push('/sfc/combine', extra: 'sfc_combine'),
-                child: const Text('sfc_combine'),
-              ),
-              ElevatedButton(
-                onPressed:
-                    () => context.push('/sfc/scroll', extra: 'sfc_scroll'),
-                child: const Text('sfc_scroll'),
-              ),
-              ElevatedButton(
-                onPressed: () => context.push('/sfc/sleep', extra: 'sfc_sleep'),
-                child: const Text('sfc_sleep'),
-              ),
-
-              const SizedBox(height: 24),
-
-              // ---------------- graphic ----------------
-              const Text(
-                'graphic',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              ElevatedButton(
-                onPressed: () => context.push('/graphic', extra: 'graphic'),
-                child: const Text('graphic'),
-              ),
-              ElevatedButton(
-                onPressed:
-                    () => context.push('/graphic/line', extra: 'graphic_line'),
-                child: const Text('graphic_line'),
-              ),
-              ElevatedButton(
-                onPressed:
-                    () => context.push(
-                      '/graphic/combine',
-                      extra: 'graphic_combine',
-                    ),
-                child: const Text('graphic_combine'),
-              ),
-              ElevatedButton(
-                onPressed:
-                    () => context.push(
-                      '/graphic/scroll',
-                      extra: 'graphic_scroll',
-                    ),
-                child: const Text('graphic_scroll'),
-              ),
-              ElevatedButton(
-                onPressed:
-                    () =>
-                        context.push('/graphic/sleep', extra: 'graphic_sleep'),
-                child: const Text('graphic_sleep'),
+              _buildChartCategory(
+                title: 'graphic',
+                routes: {
+                  'graphic': '/graphic',
+                  'graphic_line': '/graphic/line',
+                  'graphic_combine': '/graphic/combine',
+                  'graphic_scroll': '/graphic/scroll',
+                  'graphic_sleep': '/graphic/sleep',
+                },
+                context: context,
               ),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildChartCategory({
+    required String title,
+    required Map<String, String> routes,
+    required BuildContext context,
+  }) {
+    return ExpansionTile(
+      title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
+      children:
+          routes.entries.map((entry) {
+            return ListTile(
+              title: Text(entry.key),
+              onTap: () => context.push(entry.value, extra: entry.key),
+            );
+          }).toList(),
     );
   }
 }

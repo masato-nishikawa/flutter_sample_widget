@@ -7,6 +7,7 @@ import 'pages/fl_chart/p_fl_chart_line.dart';
 import 'pages/fl_chart/p_fl_chart_combine.dart';
 import 'pages/fl_chart/p_fl_chart_scroll.dart';
 import 'pages/fl_chart/p_fl_chart_sleep.dart';
+import 'package:flutter_sample_widget/pages/fl_chart/p_fl_chart_radar.dart';
 // syncfusion_flutter_charts 関連
 import 'pages/syncfusion_flutter_charts/p_sfc.dart';
 import 'pages/syncfusion_flutter_charts/p_sfc_line.dart';
@@ -55,6 +56,12 @@ final GoRouter router = GoRouter(
       builder:
           (context, state) =>
               PageFlSleep(title: state.extra as String? ?? 'fl_chart_sleep'),
+    ),
+    GoRoute(
+      path: '/fl_chart/radar',
+      builder:
+          (context, state) =>
+              PageFlRadar(title: state.extra as String? ?? 'radar'),
     ),
     // syncfusion_flutter_charts
     GoRoute(
