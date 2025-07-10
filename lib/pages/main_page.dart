@@ -45,6 +45,14 @@ class MainPage extends StatelessWidget {
                     ),
                 child: const Text('fl_chart_scroll'),
               ),
+              ElevatedButton(
+                onPressed:
+                    () => context.push(
+                      '/fl_chart/sleep',
+                      extra: 'fl_chart_sleep',
+                    ),
+                child: const Text('fl_chart_sleep'),
+              ),
               const SizedBox(height: 24),
 
               // ---------------- syncfusion_flutter_charts ----------------

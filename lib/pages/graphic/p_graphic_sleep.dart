@@ -14,7 +14,7 @@ class PageGraphicBarSleep extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            Center(child: const Text('ウォーターフォールのグラフ')),
+            Center(child: const Text('19-24, 0-15の睡眠グラフ')),
             const Expanded(child: SleepBarChartGraphic()),
           ],
         ),

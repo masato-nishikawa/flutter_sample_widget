@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import '../../charts/syncfusion_flutter_charts/c_sfc_sleep.dart';
+import 'package:flutter_sample_widget/charts/fl_chart/c_fl_chart_sleep.dart';
 
-class PageSfcSleep extends StatelessWidget {
+class PageFlSleep extends StatelessWidget {
   final String title;
 
-  const PageSfcSleep({super.key, required this.title});
+  const PageFlSleep({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class PageSfcSleep extends StatelessWidget {
         child: Column(
           children: [
             Center(child: const Text('19-24, 0-15の睡眠グラフ')),
-            SizedBox(height: 500, child: SleepChartSFC()),
+            const Expanded(child: SleepBarChartFL()),
           ],
         ),
       ),
