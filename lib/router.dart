@@ -14,6 +14,7 @@ import 'pages/syncfusion_flutter_charts/p_sfc_line.dart';
 import 'pages/syncfusion_flutter_charts/p_sfc_combine.dart';
 import 'pages/syncfusion_flutter_charts/p_sfc_scroll.dart';
 import 'pages/syncfusion_flutter_charts/p_sfc_sleep.dart';
+import 'pages/syncfusion_flutter_charts/p_sfc_radar.dart';
 // graphic 関連
 import 'pages/graphic/p_graphic.dart';
 import 'pages/graphic/p_graphic_line.dart';
@@ -26,7 +27,7 @@ final GoRouter router = GoRouter(
   routes: [
     // メインページ
     GoRoute(path: '/', builder: (context, state) => const MainPage()),
-    // fl_chart
+    // -----------------------------------------------------------------fl_chart
     GoRoute(
       path: '/fl_chart',
       builder:
@@ -64,7 +65,7 @@ final GoRouter router = GoRouter(
           (context, state) =>
               PageFlRadar(title: state.extra as String? ?? 'radar'),
     ),
-    // syncfusion_flutter_charts
+    // ------------------------------------------------syncfusion_flutter_charts
     GoRoute(
       path: '/sfc',
       builder:
@@ -94,7 +95,13 @@ final GoRouter router = GoRouter(
           (context, state) =>
               PageSfcSleep(title: state.extra as String? ?? 'sfc_sleep'),
     ),
-    // graphic
+    GoRoute(
+      path: '/sfc/radar',
+      builder:
+          (context, state) =>
+              PageSfcRadar(title: state.extra as String? ?? 'sfc_radar'),
+    ),
+    // ------------------------------------------------------------------graphic
     GoRoute(
       path: '/graphic',
       builder:

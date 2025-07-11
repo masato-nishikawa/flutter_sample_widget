@@ -39,6 +39,7 @@ class MainPage extends StatelessWidget {
                   'sfc_combine': '/sfc/combine',
                   'sfc_scroll': '/sfc/scroll',
                   'sfc_sleep': '/sfc/sleep',
+                  'sfc_radar': '/sfc/radar',
                 },
                 context: context,
               ),
