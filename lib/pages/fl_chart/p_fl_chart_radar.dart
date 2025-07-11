@@ -1,0 +1,41 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_sample_widget/charts/fl_chart/c_fl_chart_radar.dart';
+import 'package:flutter_sample_widget/theme/app_colors.dart';
+import 'package:flutter_sample_widget/utils/color_extention.dart';
+
+class PageFlRadar extends StatelessWidget {
+  final String title;
+
+  const PageFlRadar({super.key, required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(title),
+        backgroundColor: appColorMap['Mirallel Sky Blue']?.toColor(),
+      ),
+      backgroundColor: appColorMap['Mirallel Light Sky Blue']?.toColor(),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            Center(child: const Text('Figmaのレーダーチャート')),
+            const SizedBox(height: 4),
+            Center(
+              child: Image.asset(
+                'assets/radar_chart.png',
+                height: 200,
+                fit: BoxFit.cover,
+              ),
+            ),
+            const SizedBox(height: 32),
+            Center(child: const Text('レーダーチャート')),
+            const SizedBox(height: 4),
+            SizedBox(height: 200, child: RadarChartFL()),
+          ],
+        ),
+      ),
+    );
+  }
+}

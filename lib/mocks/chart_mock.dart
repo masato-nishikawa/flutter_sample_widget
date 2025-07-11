@@ -108,14 +108,16 @@ final List<ChartDate> mockWalkMonthlyData =
 
 // レーダチャートの5項目データ
 final List<Map<String, dynamic>> _radarRaw = [
-  {'title': '体組成・血圧', 'value': 5},
-  {'title': '初診スクリーニング', 'value': 4},
-  {'title': '日常生活', 'value': 3},
-  {'title': '食生活', 'value': 2},
-  {'title': '自覚症状', 'value': 1},
+  {'date': '体組成・血圧', 'value': 5},
+  {'date': '初診　スクリーニング', 'value': 4},
+  {'date': '日常生活', 'value': 3},
+  {'date': '食生活', 'value': 2},
+  {'date': '自覚症状', 'value': 1},
 ];
 final List<ChartDate> mockRadarData =
     (_dbRaw['radar'] ?? []).map((e) => ChartDate.fromJson(e)).toList();
+
+final List<String> ratings = ['E', 'D', 'C', 'B', 'A'];
 
 // 睡眠データ
 final List<Map<String, dynamic>> _sleepWeeklyRaw = [
