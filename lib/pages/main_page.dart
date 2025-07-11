@@ -50,6 +50,7 @@ class MainPage extends StatelessWidget {
                   'graphic_combine': '/graphic/combine',
                   'graphic_scroll': '/graphic/scroll',
                   'graphic_sleep': '/graphic/sleep',
+                  'graphic_radar': '/graphic/radar',
                 },
                 context: context,
               ),
