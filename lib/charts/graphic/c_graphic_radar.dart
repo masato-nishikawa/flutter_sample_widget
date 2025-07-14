@@ -1,6 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_sample_widget/theme/app_colors.dart';
+import 'package:flutter_sample_widget/utils/color_extention.dart';
 // import 'package:flutter_sample_widget/theme/app_colors.dart';
 // import 'package:flutter_sample_widget/utils/color_extention.dart';
 import 'package:graphic/graphic.dart';
@@ -52,155 +54,181 @@ const radarRaw = [
 
 const ratings = ['A', 'B', 'C', 'D', 'E'];
 
+Color _getColorForRating(String rating) {
+  final hex = ratingColorMap[rating];
+  return hex != null ? hex.toColor() : Colors.black;
+}
+
 class RadarChartGraphic extends StatelessWidget {
   const RadarChartGraphic({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Chart(
-      data: radarRaw,
-      variables: {
-        'label': Variable(
-          accessor: (Map map) {
-            final label = map['label'].toString();
-            return label.replaceAll('　', '\n');
-          },
-        ),
-        'type': Variable(accessor: (Map map) => map['type'] as String),
-        'value': Variable(accessor: (Map map) => map['value'] as num),
-      },
-      marks: [
-        LineMark(
-          position: Varset('label') * Varset('value') / Varset('type'),
-          color: ColorEncode(
-            variable: 'type',
-            values: [
-              Colors.blue.withAlpha(76),
-              Colors.grey.withAlpha(76),
-              Colors.grey.withAlpha(76),
-              Colors.grey.withAlpha(76),
-              Colors.grey.withAlpha(76),
-              Colors.grey.withAlpha(76),
-            ],
-          ),
-          shape: ShapeEncode(value: BasicLineShape(loop: true)),
-        ),
-        AreaMark(
-          position: Varset('label') * Varset('value') / Varset('type'),
-          color: ColorEncode(
-            variable: 'type',
-            values: [
-              Colors.blue.withAlpha(76),
-              Colors.transparent,
-              Colors.transparent,
-              Colors.transparent,
-              Colors.transparent,
-              Colors.transparent,
-            ],
-          ),
-          shape: ShapeEncode(value: BasicAreaShape()),
-        ),
-      ],
-      coord: PolarCoord(
-        startAngle: -pi / 2 - pi / 5,
-        endAngle: 3 * pi / 2 - pi / 5,
-      ),
-      axes: [
-        Defaults.circularAxis
-          ..line = null
-          ..label = LabelStyle(textStyle: TextStyle(color: Colors.black)),
-        Defaults.radialAxis
-          ..line = null
-          ..grid = null
-          ..label = null,
-      ],
-    );
-  }
-}
-
-const adjustData = [
-  {"type": "Email", "index": 0, "value": 120},
-  {"type": "Email", "index": 1, "value": 132},
-  {"type": "Email", "index": 2, "value": 101},
-  {"type": "Email", "index": 3, "value": 134},
-  {"type": "Email", "index": 4, "value": 90},
-  {"type": "Email", "index": 5, "value": 230},
-  {"type": "Email", "index": 6, "value": 210},
-  {"type": "Affiliate", "index": 0, "value": 220},
-  {"type": "Affiliate", "index": 1, "value": 182},
-  {"type": "Affiliate", "index": 2, "value": 191},
-  {"type": "Affiliate", "index": 3, "value": 234},
-  {"type": "Affiliate", "index": 4, "value": 290},
-  {"type": "Affiliate", "index": 5, "value": 330},
-  {"type": "Affiliate", "index": 6, "value": 310},
-  {"type": "Video", "index": 0, "value": 150},
-  {"type": "Video", "index": 1, "value": 232},
-  {"type": "Video", "index": 2, "value": 201},
-  {"type": "Video", "index": 3, "value": 154},
-  {"type": "Video", "index": 4, "value": 190},
-  {"type": "Video", "index": 5, "value": 330},
-  {"type": "Video", "index": 6, "value": 410},
-  {"type": "Direct", "index": 0, "value": 320},
-  {"type": "Direct", "index": 1, "value": 332},
-  {"type": "Direct", "index": 2, "value": 301},
-  {"type": "Direct", "index": 3, "value": 334},
-  {"type": "Direct", "index": 4, "value": 390},
-  {"type": "Direct", "index": 5, "value": 330},
-  {"type": "Direct", "index": 6, "value": 320},
-  {"type": "Search", "index": 0, "value": 320},
-  {"type": "Search", "index": 1, "value": 432},
-  {"type": "Search", "index": 2, "value": 401},
-  {"type": "Search", "index": 3, "value": 434},
-  {"type": "Search", "index": 4, "value": 390},
-  {"type": "Search", "index": 5, "value": 430},
-  {"type": "Search", "index": 6, "value": 420},
-];
-
-class DemoRadarChartGraphic extends StatelessWidget {
-  const DemoRadarChartGraphic({super.key});
-
-  @override
-  Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 10),
-      width: 350,
-      height: 300,
-      child: Chart(
-        data: adjustData,
-        variables: {
-          'index': Variable(accessor: (Map map) => map['index'].toString()),
-          'type': Variable(accessor: (Map map) => map['type'] as String),
-          'value': Variable(accessor: (Map map) => map['value'] as num),
-        },
-        marks: [
-          LineMark(
-            position: Varset('index') * Varset('value') / Varset('type'),
-            // position: Varset('index') * Varset('value'),
-            shape: ShapeEncode(value: BasicLineShape(loop: true)),
-            color: ColorEncode(variable: 'type', values: Defaults.colors10),
+      padding: const EdgeInsets.fromLTRB(0, 24, 0, 16),
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [Color(0xFFB3E5FC), Colors.white],
+          stops: [0.0, 0.3],
+        ),
+      ),
+      child: Stack(
+        children: [
+          // 表示するデータの部分
+          Chart(
+            data: radarRaw.where((e) => e['type'] == 'data').toList(),
+            variables: {
+              'label': Variable(
+                accessor: (Map map) {
+                  final rawLabel = map['label'].toString().replaceAll(
+                    '　',
+                    '\n',
+                  );
+                  final type = map['type'];
+                  String? rating;
+                  if (type == 'data') {
+                    final value = map['value'] as int;
+                    rating = ratings[5 - value];
+                  }
+                  return rating != null ? '$rawLabel\n$rating' : rawLabel;
+                },
+              ),
+              'type': Variable(accessor: (Map map) => map['type'] as String),
+              'value': Variable(accessor: (Map map) => map['value'] as num),
+            },
+            marks: [
+              LineMark(
+                position: Varset('label') * Varset('value') / Varset('type'),
+                color: ColorEncode(
+                  variable: 'type',
+                  values: [
+                    Colors.blue.withAlpha(76),
+                    ...List.filled(5, Colors.grey.withAlpha(76)),
+                  ],
+                ),
+                shape: ShapeEncode(value: BasicLineShape(loop: true)),
+              ),
+              AreaMark(
+                position: Varset('label') * Varset('value') / Varset('type'),
+                color: ColorEncode(
+                  variable: 'type',
+                  values: [
+                    Colors.blue.withAlpha(76),
+                    ...List.filled(5, Colors.transparent),
+                  ],
+                ),
+                shape: ShapeEncode(value: BasicAreaShape()),
+              ),
+            ],
+            // 極座標系において5角形を定義する
+            coord: PolarCoord(
+              startAngle: -pi / 2 - pi / 5,
+              endAngle: 3 * pi / 2 - pi / 5,
+              endRadius: 0.75,
+            ),
+            axes: [
+              Defaults.circularAxis
+                ..line = null
+                ..label = LabelStyle(
+                  textAlign: TextAlign.center,
+                  span: (text) {
+                    final lines = text.split('\n');
+                    if (lines.length >= 3) {
+                      // 改行が2回以上（＝3行以上）のときの処理
+                      return TextSpan(
+                        children: [
+                          TextSpan(
+                            text: '${lines[0]}\n${lines[1]}\n',
+                            style: const TextStyle(color: Colors.black),
+                          ),
+                          TextSpan(
+                            text: lines[2],
+                            style: TextStyle(
+                              color: _getColorForRating(lines[2]),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 28,
+                            ),
+                          ),
+                        ],
+                      );
+                    } else if (lines.length == 2) {
+                      // 2行（評価付き）
+                      return TextSpan(
+                        children: [
+                          TextSpan(
+                            text: '${lines[0]}\n',
+                            style: const TextStyle(color: Colors.black),
+                          ),
+                          TextSpan(
+                            text: lines[1],
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: _getColorForRating(lines[1]),
+                              fontSize: 28,
+                            ),
+                          ),
+                        ],
+                      );
+                    } else {
+                      // 1行（評価なし）
+                      return TextSpan(
+                        text: text,
+                        style: const TextStyle(color: Colors.black),
+                      );
+                    }
+                  },
+                ),
+              Defaults.radialAxis
+                ..line = null
+                ..grid = null
+                ..label = null,
+            ],
+          ),
+          // レーダーグラフの部分を表示
+          Chart(
+            data: radarRaw.where((e) => e['type'] != 'data').toList(),
+            variables: {
+              'label': Variable(accessor: (Map map) => map['label'] as String),
+              'type': Variable(accessor: (Map map) => map['type'] as String),
+              'value': Variable(accessor: (Map map) => map['value'] as num),
+            },
+            marks: [
+              LineMark(
+                position: Varset('label') * Varset('value') / Varset('type'),
+                color: ColorEncode(
+                  variable: 'type',
+                  values: [...List.filled(6, Colors.grey.withAlpha(76))],
+                ),
+                shape: ShapeEncode(value: BasicLineShape(loop: true)),
+              ),
+              AreaMark(
+                position: Varset('label') * Varset('value') / Varset('type'),
+                color: ColorEncode(
+                  variable: 'type',
+                  values: [...List.filled(6, Colors.transparent)],
+                ),
+                shape: ShapeEncode(value: BasicAreaShape()),
+              ),
+            ],
+            // 極座標系において5角形を定義する
+            coord: PolarCoord(
+              startAngle: -pi / 2 - pi / 5,
+              endAngle: 3 * pi / 2 - pi / 5,
+              endRadius: 0.75,
+            ),
+            axes: [
+              Defaults.circularAxis
+                ..line = null
+                ..label = null,
+              Defaults.radialAxis
+                ..line = null
+                ..grid = null
+                ..label = null,
+            ],
           ),
         ],
-        coord: PolarCoord(),
-        axes: [Defaults.circularAxis, Defaults.radialAxis],
-        selections: {
-          'touchMove': PointSelection(
-            on: {
-              GestureType.scaleUpdate,
-              GestureType.tapDown,
-              GestureType.longPressMoveUpdate,
-            },
-            dim: Dim.x,
-            variable: 'index',
-          ),
-        },
-        tooltip: TooltipGuide(
-          anchor: (_) => Offset.zero,
-          align: Alignment.bottomRight,
-          multiTuples: true,
-          // variables: ['type', 'value'],
-          variables: ['value'],
-        ),
-        crosshair: CrosshairGuide(followPointer: [false, true]),
       ),
     );
   }

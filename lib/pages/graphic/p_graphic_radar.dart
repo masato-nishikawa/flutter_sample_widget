@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sample_widget/charts/graphic/c_graphic_radar.dart';
+import 'package:flutter_sample_widget/theme/app_colors.dart';
+import 'package:flutter_sample_widget/utils/color_extention.dart';
 
 class PageGraphicRadar extends StatelessWidget {
   final String title;
@@ -9,7 +11,11 @@ class PageGraphicRadar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(title)),
+      appBar: AppBar(
+        title: Text(title),
+        backgroundColor: appColorMap['Mirallel Sky Blue']?.toColor(),
+      ),
+      backgroundColor: appColorMap['Mirallel Light Sky Blue']?.toColor(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -25,9 +31,8 @@ class PageGraphicRadar extends StatelessWidget {
             ),
             const SizedBox(height: 32),
             Center(child: const Text('レーダーチャート')),
-            const SizedBox(height: 4),
-            // const Expanded(child: DemoRadarChartGraphic()),
-            SizedBox(height: 300, child: RadarChartGraphic()),
+            const SizedBox(height: 16),
+            SizedBox(height: 200, child: const RadarChartGraphic()),
           ],
         ),
       ),
