@@ -22,3 +22,11 @@ final Map<String, String> appColorMap = {
   'White': '#FFFFFF',
   'Light Blue': '#F6F8FF',
 };
+
+final Map<String, String> ratingColorMap = {
+  'A': '#6EC3EE',
+  'B': '#77C691',
+  'C': '#FDD331',
+  'D': '#EEA351',
+  'E': '#E76266',
+};
