@@ -221,6 +221,7 @@ class RadarChartGraphic extends StatelessWidget {
             axes: [
               Defaults.circularAxis
                 ..line = null
+                ..grid = null
                 ..label = null,
               Defaults.radialAxis
                 ..line = null
